@@ -134,7 +134,7 @@ export default class CountryPicker extends Component {
             : CountryPicker.renderImageFlag(cca2, imageStyle)}
 
         </View>
-        <Text style={{marginLeft:10,fontSize:16}}>{countryName}</Text>
+        <Text style={{marginLeft:15,fontSize:16}}>{countryName}</Text>
       </View>
     )
   }
@@ -255,7 +255,7 @@ export default class CountryPicker extends Component {
   setVisibleListHeight(offset) {
     this.visibleListHeight = getHeightPercent(100) - offset
   }
-
+  
   getLetters(list) {
     return Object.keys(
       list.reduce(
@@ -310,17 +310,14 @@ export default class CountryPicker extends Component {
     })
   }
 
-  renderCountry(cca2, index) {
-    const country = countries[cca2];
-
+  renderCountry(country, index) {
     return (
       <TouchableOpacity
         key={index}
-        onPress={() => this.onSelectCountry(cca2)}
+        onPress={() => this.onSelectCountry(country)}
         activeOpacity={0.99}
-        testID={`country-selector-${country.name.common}`}
       >
-        {this.renderCountryDetail(cca2)}
+        {this.renderCountryDetail(country)}
       </TouchableOpacity>
     )
   }
@@ -328,7 +325,6 @@ export default class CountryPicker extends Component {
   renderLetters(letter, index) {
     return (
       <TouchableOpacity
-        testID={`letter-${letter}`}
         key={index}
         onPress={() => this.scrollTo(letter)}
         activeOpacity={0.6}
@@ -375,12 +371,11 @@ export default class CountryPicker extends Component {
       renderFilter({ value, onChange, onClose })
     ) : (
       <TextInput
-        testID="text-input-country-filter"
         autoFocus={autoFocusFilter}
         autoCorrect={false}
         placeholder={filterPlaceholder}
         placeholderTextColor={filterPlaceholderTextColor}
-        style={[styles.input, !this.props.closeable && styles.inputOnly]}
+        style={[styles.input]}
         onChangeText={onChange}
         value={value}
       />
@@ -421,27 +416,16 @@ export default class CountryPicker extends Component {
         >
           <SafeAreaView style={styles.modalContainer}>
             <View style={styles.header}>
-              {this.props.closeable && (
-                <CloseButton
-                  image={this.props.closeButtonImage}
-                  styles={[styles.closeButton, styles.closeButtonImage]}
-                  onPress={() => this.onClose()}
-                />
-              )}
               {this.props.filterable && this.renderFilter()}
             </View>
             <KeyboardAvoidingView behavior="padding">
               <View style={styles.contentContainer}>
                 <FlatList
-                  testID="list-countries"
                   data={this.state.flatListMap}
                   ref={flatList => (this._flatList = flatList)}
                   initialNumToRender={30}
                   renderItem={country => this.renderCountry(country.item.key)}
                   keyExtractor={(item) => item.key}
-                  onScrollToIndexFailed={()=> {
-                    console.log('onScrollToIndexFailed')
-                  }}
                 />
                 {!this.props.hideAlphabetFilter && (
                   <ScrollView

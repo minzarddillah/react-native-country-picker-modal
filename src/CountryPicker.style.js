@@ -11,7 +11,8 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    marginRight: 25
   },
   header: {
     flexDirection: 'row',
@@ -19,20 +20,21 @@ export default StyleSheet.create({
   },
   input: {
     height: 48,
-    width: '70%'
+    width: '70%',
+    paddingHorizontal: 20
   },
   inputOnly: {
     marginLeft: '15%'
   },
   touchFlag: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start'
-    // height: 19
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 19
   },
   imgStyle: {
     resizeMode: 'contain',
     width: 25,
-    // height: 19,
+    height: 19,
     borderWidth: 1 / PixelRatio.get(),
     borderColor: '#eee',
     opacity: 0.8
@@ -41,8 +43,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 30,
-    // width: 30,
-    // height: 30,
+    width: 30,
+    height: 30,
     borderWidth: 1 / PixelRatio.get(),
     borderColor: 'transparent',
     backgroundColor: 'transparent'
@@ -57,7 +59,7 @@ export default StyleSheet.create({
   itemCountryFlag: {
     justifyContent: 'center',
     alignItems: 'center',
-    // height: '7%',
+    height: '7%',
     width: '15%'
   },
   itemCountryName: {
@@ -65,7 +67,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     borderBottomWidth: 2 / PixelRatio.get(),
-    borderBottomColor: '#ccc'
+    borderBottomColor: '#ccc',
+    height: 22
 
   },
   countryName: {
