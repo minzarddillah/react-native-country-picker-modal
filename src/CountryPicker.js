@@ -340,11 +340,12 @@ export default class CountryPicker extends Component {
 
   renderCountryDetail(cca2) {
     const country = countries[cca2]
+    const { textStyle } = this.props;
     return (
       <View style={styles.itemCountry}>
         {!this.props.hideCountryFlag && CountryPicker.renderFlag(cca2)}
         <View style={styles.itemCountryName}>
-          <Text style={styles.countryName} allowFontScaling>
+          <Text style={[styles.countryName, textStyle]} allowFontScaling>
             {this.getCountryName(country)}
           </Text>
           {this.props.showCallingCode &&
@@ -360,7 +361,8 @@ export default class CountryPicker extends Component {
       renderFilter,
       autoFocusFilter,
       filterPlaceholder,
-      filterPlaceholderTextColor
+      filterPlaceholderTextColor,
+      textStyle
     } = this.props
 
     const value = this.state.filter
@@ -375,9 +377,10 @@ export default class CountryPicker extends Component {
         autoCorrect={false}
         placeholder={filterPlaceholder}
         placeholderTextColor={filterPlaceholderTextColor}
-        style={[styles.input]}
+        style={[styles.input, textStyle]}
         onChangeText={onChange}
         value={value}
+        placeholderTextColor={textStyle.color}
       />
     )
   }
@@ -414,12 +417,12 @@ export default class CountryPicker extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => this.setState({ modalVisible: false })}
         >
-          <SafeAreaView style={styles.modalContainer}>
+          <SafeAreaView style={[styles.modalContainer, this.props.styles]}>
             <View style={styles.header}>
               {this.props.filterable && this.renderFilter()}
             </View>
             <KeyboardAvoidingView behavior="padding">
-              <View style={styles.contentContainer}>
+              <View style={[styles.contentContainer, this.props.styles]}>
                 <FlatList
                   data={this.state.flatListMap}
                   ref={flatList => (this._flatList = flatList)}

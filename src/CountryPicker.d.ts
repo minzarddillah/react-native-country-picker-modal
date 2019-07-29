@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle, ImageProps } from 'react-native'
+import { StyleProp, ViewStyle, ImageProps, TextStyle } from 'react-native'
 import * as React from 'react'
 
 /**
@@ -389,6 +389,7 @@ export interface CountryPickerProps {
   /**
    * If 'filterable={true}' and renderFilter function is provided, render custom filter component.*
    */
+  textStyle?: StyleProp<TextStyle>
   renderFilter?: (args: {
     value: string
     onChange: CountryPickerProps['onChange']
